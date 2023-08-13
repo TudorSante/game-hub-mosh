@@ -1,30 +1,25 @@
-import { Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import useGames from "./hooks/useGames";
+import GameCard from "./GameCard";
 
-/* Our component has knowledge of the api endpoint ("/games"), the
-type of HTTP req we are going to send and in the future it will also
-know about the cancelling req using the abort controller. This is not
-wanted into our components, as we should implement the separation of 
-concerns in our proj.
-Silver line: Our components should be primarily responsible for returning
-markup and handling user interractions at a high level. 
-To avoid this issue, we shoul create a custom effect hook in another file,
-i.e. move the entire logic on HTTP calls and state variables inside a hook.
-Obs.: Hooks are not necessarily for sharing functionality across different
-components, we can also use them to separate concerns and make our code
-more modular and usable.
-*/
 const GameGrid = () => {
   const { games, error } = useGames();
 
+  /* On mobile devices (small -> sm) we want only 1 game card per row.
+  On larger devices: tables - 2 columns, laptops 3-5 games/row. This is
+  the meaning of { sm: 1, md: 2, lg: 3, xl: 5 }.*/
   return (
     <>
       {error && <Text color="red.400">{error}</Text>}
-      <ul>
+      <SimpleGrid
+        columns={{ sm: 1, md: 2, lg: 3, xl: 5 }}
+        spacing={10}
+        padding={10}
+      >
         {games.map((game) => (
-          <li key={game.id}>{game.name}</li>
+          <GameCard key={game.id} game={game} />
         ))}
-      </ul>
+      </SimpleGrid>
     </>
   );
 };
