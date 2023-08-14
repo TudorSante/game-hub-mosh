@@ -11,7 +11,7 @@ shape, etc. We give as children to this component the cards
 component that is responsible of their rendering. */
 const GameCardContainer = ({ children }: Props) => {
   return (
-    <Box borderRadius={10} overflow="hidden" width="300px">
+    <Box borderRadius={10} overflow="hidden">
       {children}
     </Box>
   );
