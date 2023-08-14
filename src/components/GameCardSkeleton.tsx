@@ -8,7 +8,7 @@ widths and form we need to apply the same css styling for both game cards
 and skeleton cards. */
 const GameCardSkeleton = () => {
   return (
-    <Card borderRadius={10} overflow="hidden" width="300px">
+    <Card>
       <Skeleton height="200px" />
       <CardBody>
         <SkeletonText />
