@@ -1,8 +1,8 @@
 import { Text } from "@chakra-ui/react";
-import { useGenre } from "./hooks/useGenre";
+import useGenre from "./hooks/useGenre";
 
 const GenreList = () => {
-  const { genres, error } = useGenre();
+  const { data: genres, error } = useGenre();
 
   return (
     <>
