@@ -18,9 +18,14 @@ export interface Game {
 /* if there is no selected genre, this selectedGenre?.id will return null 
 We also give some axios req config param to query only for the games that
 we need of a certain genre. */
-const useGames = (selectedGenre: Genre | null) =>
-  useData<Game>("/games", { params: { genres: selectedGenre?.id } }, [
-    selectedGenre?.id,
-  ]);
+const useGames = (
+  selectedGenre: Genre | null,
+  selectedPlatform: Platform | null
+) =>
+  useData<Game>(
+    "/games",
+    { params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id } },
+    [selectedGenre?.id, selectedPlatform?.id]
+  );
 
 export default useGames;
