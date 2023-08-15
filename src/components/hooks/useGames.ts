@@ -1,3 +1,4 @@
+import { GameQuery } from "../../App";
 import { useData } from "./useData";
 import { Genre } from "./useGenre";
 
@@ -18,14 +19,16 @@ export interface Game {
 /* if there is no selected genre, this selectedGenre?.id will return null 
 We also give some axios req config param to query only for the games that
 we need of a certain genre. */
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
-) =>
+const useGames = (gameQuery: GameQuery) =>
   useData<Game>(
     "/games",
-    { params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id } },
-    [selectedGenre?.id, selectedPlatform?.id]
+    {
+      params: {
+        genres: gameQuery.genre?.id,
+        platforms: gameQuery.platform?.id,
+      },
+    },
+    [gameQuery]
   );
 
 export default useGames;
