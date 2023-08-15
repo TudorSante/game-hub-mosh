@@ -14,6 +14,7 @@ export interface Game {
   background_image: string;
   parent_platforms: { platform: Platform }[];
   metacritic: number;
+  rating_top: number;
 }
 
 /* if there is no selected genre, this selectedGenre?.id will return null 
